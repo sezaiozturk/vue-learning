@@ -8,19 +8,46 @@
         <div id="app">
             <input type="text" @input="titleChange" />
             <h1>{{title}}</h1>
+            <h3 v-once>{{description}}</h3>
             <h3>{{description}}</h3>
+            <div>
+                <a :href="link">My Personel website</a>
+            </div>
+            <span v-html="htlmLink">Youtube</span>
+            <br />
+            <button @click="onMessage">Message</button>
+            <br />
+            <button @click="counter++">Increment</button>
+            <span>{{counter}}</span>
+            <button @click="counter--">Decrement</button>
+            <br />
+            <button @click="hello('Sezai')">Hello</button>
+            <input type="text" v-on:keyup.enter.space="modifier" />
         </div>
         <script type="text/javascript">
             const app = Vue.createApp({
                 data() {
                     return {
                         title: "Vue Js Learning",
-                        description: "",
+                        description: "Sezai Öztürk",
+                        link: "http://www.sezaiozturk.free.nf",
+                        htlmLink:
+                            "<a href='https://www.youtube.com'>youtube</a>",
+                        counter: 0,
                     };
                 },
                 methods: {
                     titleChange(event) {
                         this.description = event.target.value;
+                    },
+                    onMessage() {
+                        alert("I am learn vue.js");
+                    },
+                    hello(name) {
+                        alert("hello " + name);
+                    },
+                    modifier(event) {
+                        alert(event.target.value);
                     },
                 },
             });
